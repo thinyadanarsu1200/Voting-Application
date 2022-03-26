@@ -47,7 +47,7 @@
             </div>
 
             <div class="block w-full mt-4">
-                <x-button class="w-full bg-v-purple hover:bg-v-blue-hover text-white">
+                <x-button type="submit" class="w-full bg-v-purple hover:bg-v-blue-hover text-white">
                     {{ __('Log in') }}
                 </x-button>
             </div>

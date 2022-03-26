@@ -1565,6 +1565,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
+.hover\:border-v-blue-hover:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(40 121 189 / var(--tw-border-opacity));
+}
 .hover\:bg-gray-400:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
