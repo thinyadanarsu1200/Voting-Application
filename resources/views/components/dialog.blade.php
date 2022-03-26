@@ -1,4 +1,4 @@
-@props(['align' => '','width' => '48', 'contentClasses' => 'py-1 bg-white','alignmentClasses' => ''])
+@props(['align' => 'right','show' => '', 'width' => '48', 'contentClasses' => ''])
 
 @php
 switch ($align) {
@@ -19,24 +19,9 @@ switch ($width) {
         $width = 'w-48';
         break;
 }
-
-// switch($show){
-//     case 'block':
-//         $show="block";
-//         break;
-//     case 'md:block':
-//         $show="md:block";
-//         break;
-//     case 'hidden':
-//         $show="hidden";
-//         break;
-//     case 'lg:hidden':
-//         $show="lg:hidden";
-//         break;
-// }
 @endphp
 
-<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+<div class="relative {{ $show }}" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
         {{ $trigger }}
     </div>
@@ -48,13 +33,9 @@ switch ($width) {
             x-transition:leave="transition ease-in duration-150"
             x-transition:leave-start="transform opacity-100 scale-100"
             x-transition:leave-end="transform opacity-0 scale-50"
-            class="absolute z-50 mt-2 {{ $width }} rounded-lg shadow-dialog overflow-hidden {{ $alignmentClasses }} {{ $contentClasses }}"
+            class="absolute z-50 mt-2 {{ $width }} rounded-lg shadow-dialog text-left font-semibold text-sm bg-white mt-2 px-4 py-6 {{ $alignmentClasses }} {{ $contentClasses }}"
             style="display: none;"
-            @click="open = false"
             @keydown.escape.window="open=false">
-        {{-- <div class="rounded-md ring-1 ring-black ring-opacity-5 ">
-            {{ $content }}
-        </div> --}}
         {{ $content }}
     </div>
 </div>

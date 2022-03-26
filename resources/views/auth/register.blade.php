@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="{{ asset('images/logo.png') }}" alt="" class="w-14">
             </a>
         </x-slot>
 
@@ -45,12 +45,12 @@
                                 name="password_confirmation" required />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-between mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-button type="submit" class="ml-4 bg-v-purple hover:bg-v-blue-hover text-white">
                     {{ __('Register') }}
                 </x-button>
             </div>

@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="{{ asset('images/logo.png') }}" alt="" class="w-14">
             </a>
         </x-slot>
 
@@ -24,8 +24,14 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
+               <div class="flex items-center justify-between">
+                    <x-label for="password" :value="__('Password')" />
+                    @if (Route::has('password.request'))
+                        <a class="hover:underline text-sm text-v-blue hover:text-v-blue-hover" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
+               </div>
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
@@ -40,16 +46,14 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
+            <div class="block w-full mt-4">
+                <x-button class="w-full bg-v-purple hover:bg-v-blue-hover text-white">
                     {{ __('Log in') }}
                 </x-button>
+            </div>
+
+            <div class="mt-4">
+                <p class="text-center text-sm text-gray-500 font-semibold">Don't have an account? <a href="{{ route('register') }}" class="text-v-blue hover:underline hover:text-v-blue-hover"> Register !</a></p>
             </div>
         </form>
     </x-auth-card>
