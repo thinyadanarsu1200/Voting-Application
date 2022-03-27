@@ -91,21 +91,7 @@
                     </div>
                 </div>
            <div class="w-full md:w-175">
-              <nav class="hidden md:flex items-center justify-between">
-                 <ul class="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
-                    <li><a href="#" class="border-b-4 pb-3 border-blue">All Ideas(87)</a></li>
-                    <li><a href="#"
-                    class="border-b-4 pb-3 text-gray-400 transition duration-150 ease-in hover:text-gray-900 hover:border-blue">Considering(6)</a></li>
-                    <li><a href="#"
-                        class="border-b-4 pb-3 text-gray-400 transition duration-150 ease-in hover:text-gray-900 hover:border-blue">Inprogress(1)</a></li>
-                 </ul>
-                 <ul class="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
-                    <li><a href="#"
-                    class="border-b-4 pb-3 text-gray-400 transition duration-150 ease-in hover:text-gray-900 hover:border-blue">Incompleted(10)</a></li>
-                    <li><a href="#"
-                        class="border-b-4 pb-3 text-gray-400 transition duration-150 ease-in hover:text-gray-900 hover:border-blue">Closed(5)</a></li>
-                 </ul>
-              </nav>
+              <livewire:status-filter/>
 
               <div class="mt-8">
                   {{ $slot }}

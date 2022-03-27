@@ -16,22 +16,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        return view('idea.index',[
-            'ideas' =>Idea::with('category','user','status')
-                    // ->addSelect([
-                    //     'voted_by_user' => Vote::select('id')
-                    //     ->where('user_id',auth()->id())
-                    //     ->whereColumn('idea_id','ideas.id')
-                    // ])
-                    ->withCount([
-                        'votes',
-                        'votes as voted_by_user' => function($query){
-                            $query->where('user_id',auth()->id());
-                        }
-                    ])
-                    ->orderBy('id','DESC')
-                    ->simplePaginate(Idea::PAGINATE),
-        ]);
+        return view('idea.index');
     }
 
     public function show(Idea $idea){
