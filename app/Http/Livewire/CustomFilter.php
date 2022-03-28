@@ -9,6 +9,12 @@ class CustomFilter extends Component
 {
     public $category,$filter,$search;
 
+    public function mount(){
+        $this->category = request('category')?? null;
+        $this->filter = request('filter')?? null;
+        $this->search = request('search')?? null;
+    }
+
     public function updatedCategory($new_category){
         $this->emit('queryStringUpdatedCategory',$new_category);
     }
