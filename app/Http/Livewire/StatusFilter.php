@@ -12,13 +12,8 @@ class StatusFilter extends Component
     public $redirect = false;
     public $statusCount;
 
-    protected $queryString = [
-        'status' => [
-            'except' => 'all',
-        ]
-    ];
-
     public function mount(){
+        $this->status = request('status')?? 'all';
         // $this->statusCount= Status::getCount();
          $this->statusCount= Status::getCountByDynamic();
 
@@ -35,14 +30,16 @@ class StatusFilter extends Component
         //     ]);
         // }
 
-        $this->status= $new_status;
-        // if($this->getPreviousRouteName()){
+        $this->status= $new_status === 'all'? null : $new_status;
+        $this->emit('queryStringUpdatedStatus',$this->status);
+
+        if($this->getPreviousRouteName() === 'idea.show'){
             return redirect()->route('idea.index',[
                 'status' => $this->status == 'all'? null : $this->status,
             ]);
-        // }
-
+        }
     }
+
     public function render()
     {
         return view('livewire.status-filter');
