@@ -10,11 +10,13 @@ class IdeasIndex extends Component
 {
     use WithPagination;
 
-    public $status,$category;
+    public $status,$category,$filter;
+
     protected $queryString = [
-        'status' ,'category'=> ['except' => '']
+        'status' ,'category'=> ['except' => ''],'filter'=> ['except' => '']
     ];
-    protected $listeners = ['queryStringUpdatedStatus','queryStringUpdatedCategory'];
+    protected $listeners = ['queryStringUpdatedStatus','queryStringUpdatedCategory'
+,'queryStringUpdatedFilter'];
     
     public function queryStringUpdatedStatus($new_status){
         $this->resetPage();
@@ -23,6 +25,10 @@ class IdeasIndex extends Component
 
     public function queryStringUpdatedCategory($new_category){
         $this->category = $new_category;
+    }
+
+    public function queryStringUpdatedFilter($new_filter){
+        $this->filter = $new_filter;
     }
 
     public function render()
@@ -43,6 +49,12 @@ class IdeasIndex extends Component
                         $query->whereHas('category',function($query) use ($category){
                             $query->where('slug',$category);
                         });
+                    })
+                    ->when($this->filter === 'top-voted',function($query){
+                        $query->orderByDesc('votes_count');
+                    })
+                    ->when($this->filter === 'all-ideas',function($query){
+                        $query->where('user_id',auth()->user()->id);
                     })
                     ->withCount([
                         'votes',

@@ -8,12 +8,10 @@
         </select>
     </div>
     <div class="w-full md:w-1/3">
-        <select name="other_filters" id="other_filters" class="w-full rounded-md shadow border border-transparent focus:border-blue">
-            <option value="">Other Filters</option>
-            <option value="other_filter_one">Other Filter One</option>
-            <option value="other_filter_two">Other Filter Two</option>
-            <option value="other_filter_three">Other Filter Three</option>
-            <option value="other_filter_four">Other Filter Four</option>
+        <select wire:model="filter" name="other_filters" id="other_filters" class="w-full rounded-md shadow border border-transparent focus:border-blue">
+            <option value="">No Filters</option>
+            <option value="top-voted">Top Voted</option>
+            <option value="my-ideas">My Ideas</option>
         </select>
     </div>
     <div class="w-full md:w-2/3 relative">
