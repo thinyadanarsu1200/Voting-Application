@@ -10,13 +10,13 @@ class IdeasIndex extends Component
 {
     use WithPagination;
 
-    public $status,$category,$filter;
+    public $status,$category,$filter,$search;
 
     protected $queryString = [
-        'status' ,'category'=> ['except' => ''],'filter'=> ['except' => '']
+        'status' ,'category'=> ['except' => ''],'filter'=> ['except' => ''],'search'
     ];
     protected $listeners = ['queryStringUpdatedStatus','queryStringUpdatedCategory'
-,'queryStringUpdatedFilter'];
+,'queryStringUpdatedFilter','queryStringUpdatedSearch'];
     
     public function queryStringUpdatedStatus($new_status){
         $this->resetPage();
@@ -31,6 +31,9 @@ class IdeasIndex extends Component
         $this->filter = $new_filter;
     }
 
+    public function queryStringUpdatedSearch($new_search){
+        $this->search = $new_search;
+    }
     public function render()
     {
         return view('livewire.ideas-index',[
@@ -55,6 +58,9 @@ class IdeasIndex extends Component
                     })
                     ->when($this->filter === 'all-ideas',function($query){
                         $query->where('user_id',auth()->user()->id);
+                    })
+                    ->when(strlen($this->search) > 3,function($query){
+                        $query->where('title','like','%'.$this->search.'%');
                     })
                     ->withCount([
                         'votes',

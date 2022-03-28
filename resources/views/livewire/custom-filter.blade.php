@@ -16,6 +16,6 @@
     </div>
     <div class="w-full md:w-2/3 relative">
         <img src="{{ asset('images/search.png') }}" alt="search" class="absolute top-1/2 left-2 -translate-y-1/2 w-5">
-        <input type="search" placeholder="Find an idea" class="pr-4 py-2 pl-8 border border-transparent focus:border-blue shadow rounded-md w-full placeholder:text-gray-900">
+        <input wire:model="search" type="search" placeholder="Find an idea" class="pr-4 py-2 pl-8 border border-transparent focus:border-blue shadow rounded-md w-full placeholder:text-gray-900">
     </div>
 </div> 
