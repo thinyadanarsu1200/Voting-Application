@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart{
+    width: 800px;
+    height: 500px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>
+<body>
+   <div class="heart">
+        <div class="myLove">
+
+        </div>
+   </div>
+    <script>
+    const myLove = document.querySelector('.myLove');
+for(let r= 1; r <=7 ;r++){
+    for(let c= 1; c <= 17; c++){
+        if(r == 1){
+            if(c == 1 || c == 5){ 
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 7 || c == 11){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 13 || c == 17){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else{
+                myLove.innerHTML += "<span style='color:black;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }
+        }
+        if(r == 2){
+            if(c == 1 || c == 5){ 
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 7 || c == 11){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 13 || c == 16){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else{
+                myLove.innerHTML += "<span style='color:black;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }
+        }
+        if(r == 3){
+            if(c == 1 || c == 2 || c == 4 || c == 5){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 7 || c == 8 || c == 11){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 13 || c == 15){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else{
+                myLove.innerHTML += "<span style='color:black;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }
+        }
+
+        if(r == 4){
+            if(c == 1 || c == 3 || c == 5){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 7 || c == 9 || c == 11){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if( c == 13 || c == 14){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else{
+                myLove.innerHTML += "<span style='color:black;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }
+        }
+
+        if(r == 5){
+            if(c == 1 || c == 5){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 7 || c == 10 || c == 11){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c== 13 ||c == 15){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else{
+                myLove.innerHTML += "<span style='color:black;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }
+        }
+
+        if(r == 6){
+            if(c == 1 || c == 5){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 7 || c == 11){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 13 || c == 16){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else{
+                myLove.innerHTML += "<span style='color:black;font-size: 20px;''>&hearts;&hearts;&hearts; </span>"     
+            }
+        }
+        if(r == 7){
+            if(c == 1 || c == 5){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 7 || c == 11){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else if(c == 13 || c == 17){
+                myLove.innerHTML += "<span style='color:white;font-size: 20px;'>&hearts;&hearts;&hearts; </span>"     
+            }else{
+                myLove.innerHTML += "<span style='color:black;font-size: 20px;''>&hearts;&hearts;&hearts; </span>"     
+            }
+        }
+    }
+    myLove.innerHTML += "<br/>"     
+}
+    </script>
+</body>
+</html>

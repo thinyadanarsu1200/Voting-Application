@@ -1,4 +1,4 @@
-@props(['align' => 'right','show' => '', 'width' => '48', 'contentClasses' => ''])
+@props(['align' => 'right','show' => '', 'width' => '48', 'contentClasses' => '','event' => ''])
 
 @php
 switch ($align) {
@@ -21,7 +21,15 @@ switch ($width) {
 }
 @endphp
 
-<div class="relative {{ $show }}" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+<div class="relative {{ $show }}" x-data="{ open: false }" 
+x-init="
+   if('{{ $event }}'){
+    Livewire.on('{{ $event }}', () => {
+        open = false;
+    });
+   }
+"
+@click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
         {{ $trigger }}
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Idea;
 use App\Http\Requests\StoreIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
+use App\Models\User;
 use App\Models\Vote;
 
 class IdeaController extends Controller
@@ -16,6 +17,8 @@ class IdeaController extends Controller
      */
     public function index()
     {
+        // $user = User::findOrFail(1);
+        // $user->assignRole('admin');
         return view('idea.index');
     }
 
