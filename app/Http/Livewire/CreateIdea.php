@@ -36,9 +36,7 @@ class CreateIdea extends Component
 
     public function render()
     {
-        return view('livewire.create-idea',[
-            'categories' => Category::all(),
-        ]);
+        return view('livewire.create-idea');
     }
 
 }

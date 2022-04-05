@@ -56,10 +56,10 @@ class IdeasIndex extends Component
                     ->when($this->filter === 'top-voted',function($query){
                         $query->orderByDesc('votes_count');
                     })
-                    ->when($this->filter === 'all-ideas',function($query){
+                    ->when($this->filter === 'my-ideas',function($query){
                         $query->where('user_id',auth()->user()->id);
                     })
-                    ->when(strlen($this->search) > 3,function($query){
+                    ->when($this->search && strlen($this->search) > 3,function($query){
                         $query->where('title', 'like', "%$this->search%")
                         ->orWhere('description', 'like', "%$this->search%")
                         ->orWhereHas('user', function($query) {

@@ -53,7 +53,9 @@ class IdeaPolicy
      */
     public function update(User $user, Idea $idea)
     {
-        //
+        if($user->can('edit idea')){
+            return ($user->id === (int) $idea->user_id && now()->subHour() <= $idea->created_at) || $user->hasRole('admin');
+        }
     }
 
     /**
@@ -65,7 +67,9 @@ class IdeaPolicy
      */
     public function delete(User $user, Idea $idea)
     {
-        //
+        if($user->can('delete idea')){
+            return $user->id === (int) $idea->user_id || $user->hasRole('admin');
+        }
     }
 
     /**

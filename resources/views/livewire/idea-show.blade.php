@@ -4,7 +4,7 @@
             <a href="" class="flex-shrink-0 mx-2 md:mx-0">
                 <img src="{{ $idea->user->getAvatar() }}" alt="" class="w-14 h-14 rounded-md">
             </a>
-            <div class="w-full mx-2 md:mx-1">
+            <div class="w-full mx-2 md:mx-4">
                 <h4 class="text-xl font-semibold">
                     <a href="#" class="hover:under">
                         {{ $idea->title }}
@@ -13,7 +13,7 @@
                 <div class="text-gray-600 mt-3 line-clamp-3">
                     {{ $idea->description }}
                 </div>
-                <div class="flex flex-col md:flex-row md:items-center justify-between mt-8">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mt-8">
                     <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
                         <div class="hidden md:block font-bold text-gray-900">{{ $idea->user->name }}</div>
                         <div class="hidden md:block">&bull;</div>
@@ -35,11 +35,43 @@
                                 </svg>
                             </x-slot>
                             <x-slot name="content">
-                                <x-dropdown-link>Mark as Span</x-dropdown-link>
-                                <x-dropdown-link>Mark as Delete</x-dropdown-link>
+                               @can('update', $idea)
+                               <x-dropdown-link
+                               href="#"
+                               @click.prevent="
+                                   isOpen = false
+                                   $dispatch('custom-show-edit-modal')
+                               "
+                               >Edit Idea</x-dropdown-link>
+                               @endcan
+
+                              @can('delete', $idea)
+                              <x-dropdown-link
+                              href="#"
+                              @click.prevent="
+                                  isOpen = false
+                                  $dispatch('custom-show-delete-modal')
+                              "
+                              >
+                                   Delete Idea
+                              </x-dropdown-link>
+                              @endcan
+                              @auth
+                              <x-dropdown-link
+                              href="#"
+                              @click.prevent="
+                                  isOpen = false
+                                  $dispatch('custom-show-markAsSpam-modal')
+                              "
+                              >
+                                   Mark as Spam
+                              </x-dropdown-link>
+                              @endauth
+
                             </x-slot>
                         </x-dropdown>
                     </div>
+               
                     {{-- Mobile --}}
                     <div class="flex items-center md:hidden mt-4 md:mt-0">
                         <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
@@ -62,9 +94,8 @@
                             Vote
                             </button>
                        @endif
-                    </div>
+                    </div>  
                 </div>
-               
             </div>
         </div>
     </div> 

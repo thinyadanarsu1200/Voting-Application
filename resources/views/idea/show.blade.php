@@ -4,11 +4,20 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
-            <span class="ml-2">All ideas{{ $backText }}</span>
+            <span class="ml-2">All ideas</span>
         </a>
     </div>
 
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount"/>
+
+   @can('update', $idea)
+    <livewire:edit-idea :idea="$idea"/>
+   @endcan
+
+   @can('delete', $idea)
+   <livewire:delete-idea :idea="$idea"/>
+   @endcan
+
 
     <div class="comments-container relative space-y-4 md:space-y-6 md:ml-22 mb-8 mt-1 pt-6">
         <div class="comment-container relative bg-white rounded-md flex shadow">
