@@ -13,7 +13,11 @@ class IdeasIndex extends Component
     public $status,$category,$filter,$search;
 
     protected $queryString = [
-        'status' ,'category'=> ['except' => ''],'filter'=> ['except' => ''],'search'
+        'status' ,
+        'category'=> ['except' => ''],
+        'filter'=> ['except' => ''],
+        'filter' => ['except' => 'spam-reports'],
+        'search'
     ];
     protected $listeners = ['queryStringUpdatedStatus','queryStringUpdatedCategory'
 ,'queryStringUpdatedFilter','queryStringUpdatedSearch'];
@@ -56,7 +60,10 @@ class IdeasIndex extends Component
                     ->when($this->filter === 'top-voted',function($query){
                         $query->orderByDesc('votes_count');
                     })
-                    ->when($this->filter === 'my-ideas',function($query){
+                    ->when($this->filter === 'spam-reports', function($query){
+                        $query->where('spam_reports','>','0');
+                    })
+                    ->when($this->filter === 'my-ideas' && auth()->user()->hasRole('admin'),function($query){
                         $query->where('user_id',auth()->user()->id);
                     })
                     ->when($this->search && strlen($this->search) > 3,function($query){

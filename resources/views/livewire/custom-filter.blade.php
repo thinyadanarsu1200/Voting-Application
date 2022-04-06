@@ -12,6 +12,9 @@
             <option value="">No Filters</option>
             <option value="top-voted">Top Voted</option>
             <option value="my-ideas">My Ideas</option>
+            @admin
+            <option value="spam-reports">Spam Reports</option>
+            @endadmin
         </select>
     </div>
     <div class="w-full md:w-2/3 relative">

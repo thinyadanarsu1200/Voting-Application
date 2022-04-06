@@ -10,6 +10,11 @@
                         {{ $idea->title }}
                     </a>
                 </h4>
+                @admin
+                @if ($idea->spam_reports > 0)
+                    <p class="text-red-500  mb-2 text-sm">Spam Reports - {{ $idea->spam_reports }}</p>
+                @endif
+            @endadmin
                 <div class="text-gray-600 mt-3 line-clamp-3">
                     {{ $idea->description }}
                 </div>
@@ -28,48 +33,58 @@
                         <div class="{{ Str::kebab($idea->status->name) }} text-xxs font-bold uppercase w-28 h-7 leading-none rounded-full text-center py-2 px-4">
                             {{ $idea->status->name }}
                         </div>
-                        <x-dropdown alignmentClasses="origin-top-right right-0 md:origin-top-left md:left-0">
-                            <x-slot name="trigger">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                                </svg>
-                            </x-slot>
-                            <x-slot name="content">
-                               @can('update', $idea)
-                               <x-dropdown-link
-                               href="#"
-                               @click.prevent="
-                                   isOpen = false
-                                   $dispatch('custom-show-edit-modal')
-                               "
-                               >Edit Idea</x-dropdown-link>
-                               @endcan
+                       @auth
+                       <x-dropdown alignmentClasses="origin-top-right right-0 md:origin-top-left md:left-0">
+                        <x-slot name="trigger">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                            </svg>
+                        </x-slot>
+                        <x-slot name="content">
+                           @can('update', $idea)
+                           <x-dropdown-link
+                           href="#"
+                           @click.prevent="
+                               isOpen = false
+                               $dispatch('custom-show-edit-modal')
+                           "
+                           >Edit Idea</x-dropdown-link>
+                           @endcan
 
-                              @can('delete', $idea)
-                              <x-dropdown-link
-                              href="#"
-                              @click.prevent="
-                                  isOpen = false
-                                  $dispatch('custom-show-delete-modal')
-                              "
-                              >
-                                   Delete Idea
-                              </x-dropdown-link>
-                              @endcan
-                              @auth
-                              <x-dropdown-link
-                              href="#"
-                              @click.prevent="
-                                  isOpen = false
-                                  $dispatch('custom-show-markAsSpam-modal')
-                              "
-                              >
-                                   Mark as Spam
-                              </x-dropdown-link>
-                              @endauth
+                          @can('delete', $idea)
+                          <x-dropdown-link
+                          href="#"
+                          @click.prevent="
+                              isOpen = false
+                              $dispatch('custom-show-delete-modal')
+                          "
+                          >
+                               Delete Idea
+                          </x-dropdown-link>
+                          @endcan
 
-                            </x-slot>
-                        </x-dropdown>
+                         <x-dropdown-link
+                         href="#"
+                         @click.prevent="
+                             isOpen = false
+                             $dispatch('custom-show-mark-idea-as-spam-modal')
+                         "
+                         >
+                              Mark as Spam
+                         </x-dropdown-link>
+
+                         <x-dropdown-link
+                         href="#"
+                         @click.prevent="
+                             isOpen = false
+                             $dispatch('open-reset-spam-report-modal')
+                         "
+                         >
+                              Reset spam reports
+                         </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                    @endauth
                     </div>
                
                     {{-- Mobile --}}

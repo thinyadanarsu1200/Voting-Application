@@ -10,14 +10,9 @@
 
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount"/>
 
-   @can('update', $idea)
-    <livewire:edit-idea :idea="$idea"/>
-   @endcan
-
-   @can('delete', $idea)
-   <livewire:delete-idea :idea="$idea"/>
-   @endcan
-
+    @push('modals')
+        <x-idea-modals :idea="$idea" />    
+    @endpush
 
     <div class="comments-container relative space-y-4 md:space-y-6 md:ml-22 mb-8 mt-1 pt-6">
         <div class="comment-container relative bg-white rounded-md flex shadow">
@@ -29,7 +24,7 @@
                     {{-- <h4 class="text-xl font-semibold">
                         <a href="#" class="hover:under">
                             A random title will go here.
-                        </a>
+                         </a>
                     </h4> --}}
                     <div class="text-gray-600 mt-3 line-clamp-3">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quasi, veritatis, facilis dolorum possimus aliquid voluptatibus enim magni officiis, nihil cupiditate numquam? Velit dignissimos, ipsam iusto corporis dolorum eum soluta, odio a animi aspernatur est nemo earum assumenda qui quasi numquam molestias amet voluptate itaque! Dolorum, accusamus quia neque aperiam dolore fugit, libero nam magnam molestiae exercitationem sint! Ipsa totam provident molestiae at, labore ab necessitatibus minima sunt, cupiditate quod praesentium fugit asperiores delectus, pariatur impedit officiis non. Voluptate cumque voluptatum neque eaque eveniet vel necessitatibus accusantium maiores. Molestiae rem culpa optio asperiores quae! Similique minima dolor impedit distinctio voluptates!

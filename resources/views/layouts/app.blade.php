@@ -98,6 +98,7 @@
               </div>
            </div>
        </div>
+       @stack('modals')
        <livewire:scripts/>
     </body>
 </html>
