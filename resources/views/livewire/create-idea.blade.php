@@ -38,6 +38,6 @@
         </button>
    </div>
 
-     <x-alert status="success" :message="session('success')"/>
+     {{-- <x-alert status="success" :message="session('success')"/> --}}
 
 </form>

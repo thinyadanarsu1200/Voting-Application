@@ -73,6 +73,8 @@
                               Mark as Spam
                          </x-dropdown-link>
 
+                       @admin
+                         @if ($idea->spam_reports > 0)
                          <x-dropdown-link
                          href="#"
                          @click.prevent="
@@ -82,6 +84,8 @@
                          >
                               Reset spam reports
                          </x-dropdown-link>
+                         @endif
+                       @endadmin
                         </x-slot>
                     </x-dropdown>
                     @endauth

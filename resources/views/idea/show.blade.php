@@ -10,6 +10,8 @@
 
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount"/>
 
+    <x-notification-success/>
+
     @push('modals')
         <x-idea-modals :idea="$idea" />    
     @endpush
