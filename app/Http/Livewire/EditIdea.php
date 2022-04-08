@@ -53,7 +53,6 @@ class EditIdea extends Component
 
         $this->emit('ideaWasUpdated');
         $this->dispatchBrowserEvent('notify',['message' => 'Idea was updated successfully!']); //for toast showing
-
     }
 
     public function render()

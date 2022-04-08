@@ -15,7 +15,9 @@ x-init="
     });
    }
 "
-class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true"
+style="display: none;"
+>
     <div class="flex items-end justify-center min-h-screen">
         <!--
       Background overlay, show/hide based on modal state.

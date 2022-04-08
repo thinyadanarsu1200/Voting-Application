@@ -19,13 +19,13 @@
                 this.isOpen = true;
                 this.messageToShow = message;
                 setTimeout(() => {
-                    isOpen = false
+                    this.isOpen = false
                 }, 5000);
             }
         }"
         @keydown.escape.window="isOpen = false"
         @notify.window="
-            showNotification($event.detail.message + $event.detail.type);
+            showNotification($event.detail.message);
         "
         x-init="
             if({{ $redirect }}){
