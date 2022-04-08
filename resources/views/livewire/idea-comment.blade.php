@@ -1,4 +1,4 @@
-<div class="comment-container relative bg-white rounded-md flex shadow">
+<div class="comment-container relative bg-white border border-transparent rounded-md flex shadow">
     <div class="flex flex-col md:flex-row px-2 py-6 ml-4">
         <a href="" class="flex-shrink-0">
             <img src="{{ $comment->user->getAvatar() }}" alt="" class="w-14 h-14 rounded-md">

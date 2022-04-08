@@ -27,6 +27,17 @@ x-init="
     Livewire.on('{{ $event }}', () => {
         open = false;
     });
+
+    Livewire.hook('message.processed',function(message,component){
+        if(message.updateQueue[0].payload.event === 'commentWasCreated' && message.component.fingerprint.name === 'idea-comments'){
+            const last_comment = document.querySelector('.comment-container:last-child');
+            last_comment.scrollIntoView({ behavior: 'smooth' });
+            last_comment.classList.add('border-green-200');
+            setTimeout(() => {
+                last_comment.classList.remove('border-green-200');
+            },5000);
+        }
+    })
    }
 "
 @click.outside="open = false" @close.stop="open = false">
