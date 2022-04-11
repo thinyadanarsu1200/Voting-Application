@@ -5,14 +5,27 @@ namespace App\Http\Livewire;
 use App\Models\Comment;
 use App\Models\Idea;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class IdeaComments extends Component
 {
+    use WithPagination;
     public $idea;
 
-    protected $listeners = ['commentWasCreated'];
+    protected $listeners = ['commentWasCreated','commentWasDeleted','goToPreviousPage'];
 
     public function commentWasCreated(){
+        $this->idea->refresh();
+        $this->goToPage($this->idea->comments()->paginate()->lastPage());
+    }
+
+    public function goToPreviousPage(){
+        $this->idea->refresh();
+        $this->previousPage();  
+    }
+
+    
+    public function commentWasDeleted(){
         $this->idea->refresh();
     }
 
@@ -23,7 +36,7 @@ class IdeaComments extends Component
     public function render()
     {
         return view('livewire.idea-comments',[
-            'comments' => $this->idea->comments->load(['user','idea']),
+            'comments' => $this->idea->comments()->with(['user','idea'])->paginate()->withQueryString(),
         ]);
     }
 }

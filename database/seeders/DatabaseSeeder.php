@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
         $show_idea = Permission::create(['name' => 'show idea']);
         $edit_idea = Permission::create(['name' => 'edit idea']);
         $delete_idea = Permission::create(['name' => 'delete idea']);
+        $edit_comment = Permission::create(['name' => 'edit comment']);
+        $delete_comment = Permission::create(['name' => 'delete comment']);
 
         $admin = Role::create(['name' => 'admin']);
         $admin->givePermissionTo([ 'change status','create idea','show idea','edit idea','delete idea']);

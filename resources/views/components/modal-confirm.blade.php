@@ -1,5 +1,6 @@
 @props([
-    'eventToOpenModal',
+    'deleteCommentWasSet' => null,
+    'eventToOpenModal' => null,
     'eventToCloseModal' => null,
     'modalTitle',
     'modalDescription',
@@ -9,17 +10,41 @@
 ])
 <div
     x-cloak
-    x-data="{ isOpen: false }"
+    x-data="{ isOpen: false , first_comment : null}"
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
-    {{ '@'.$eventToOpenModal}}.window="
-        isOpen = true
-        $nextTick(() => $refs.cancelButton.focus())
-    "
+        if ('{{ $eventToOpenModal }}'){
+            {{ '@'.$eventToOpenModal}}.window="
+            isOpen = true
+            $nextTick(() => $refs.cancelButton.focus())
+            "
+        }
+       
     x-init="
-        window.livewire.on({{ $eventToCloseModal }}, () => {
-            isOpen = false
-        })
+       if('{{ $eventToCloseModal }}'){
+            Livewire.on('{{ $eventToCloseModal }}', () => {
+                isOpen = false
+            });
+       }
+
+        if('{{ $deleteCommentWasSet }}'){
+            Livewire.on('{{ $deleteCommentWasSet }}', () => {
+                isOpen = true
+                $nextTick(() => $refs.cancelButton.focus())
+            });
+        }
+
+        Livewire.hook('message.processed',function(message,component){
+            if(message.updateQueue[0].payload.event === 'commentWasDeleted'){
+                console.log(message);
+                first_comment = document.querySelector('.comment-container:first-child');
+               
+                if(first_comment == null){
+                    Livewire.emit('goToPreviousPage');
+                    return;
+                }
+            }
+        });
     "
     class="fixed z-20 inset-0 overflow-y-auto"
     aria-labelledby="modal-title"

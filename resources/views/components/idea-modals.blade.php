@@ -1,16 +1,21 @@
 @props(['idea'])
 @can('update', $idea)
-<livewire:edit-idea :idea="$idea"/>
+    <livewire:edit-idea :idea="$idea"/>
 @endcan
 
 @can('delete', $idea)
-<livewire:delete-idea :idea="$idea"/>
+    <livewire:delete-idea :idea="$idea"/>
 @endcan
 
 @auth
-<livewire:mark-idea-as-spam :idea="$idea"/>
+    <livewire:mark-idea-as-spam :idea="$idea"/>
 @endauth
 
 @admin
-<livewire:reset-idea-spam-reports :idea="$idea"/>
+    <livewire:reset-idea-spam-reports :idea="$idea"/>
 @endadmin
+
+
+    <livewire:edit-comment />
+
+    <livewire:delete-comment/>

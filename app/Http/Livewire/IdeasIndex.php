@@ -12,6 +12,8 @@ class IdeasIndex extends Component
 
     public $status,$category,$filter,$search;
 
+    protected $perPage = 3;
+
     protected $queryString = [
         'status' ,
         'category'=> ['except' => ''],
@@ -80,7 +82,8 @@ class IdeasIndex extends Component
                         }
                     ])
                     ->orderBy('id','DESC')
-                    ->simplePaginate(Idea::PAGINATE),
+                    ->simplePaginate()
+                    ->withQueryString(),
         ]);
     }
 }

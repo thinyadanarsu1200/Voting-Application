@@ -28,7 +28,7 @@
             showNotification($event.detail.message);
         "
         x-init="
-            if({{ $redirect }}){
+            if('{{ $redirect }}'){
                 $nextTick(() => {
                     showNotification('{{ $messageToShow }}');
                 });

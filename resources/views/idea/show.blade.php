@@ -14,6 +14,10 @@
 
     <x-notification-success/>
 
+    @push('scripts')
+        
+    @endpush
+
     @push('modals')
         <x-idea-modals :idea="$idea" />    
     @endpush

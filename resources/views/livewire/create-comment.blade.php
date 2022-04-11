@@ -1,6 +1,7 @@
 <x-dialog 
 event="commentWasCreated"
-align="left" width="w-48 md:w-104" show="hidden md:block">
+align="left" width="w-48 md:w-104" 
+show="hidden md:block">
     <x-slot name="trigger">
         <button type="button"
         class="flex items-center justify-center w-32 h-11 text-xs bg-v-blue font-semibold rounded-md border-blue hover:bg-blue-hover transition duration-150 ease-in text-white">

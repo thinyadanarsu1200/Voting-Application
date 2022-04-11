@@ -104,6 +104,9 @@
         @endif
 
        @stack('modals')
+
+       @stack('scripts')
+       
        <livewire:scripts/>
     </body>
 </html>

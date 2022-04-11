@@ -1,0 +1,6 @@
+
+Todo:
+  ☐ Refactor livewire event
+  ☐ If last comment is deleted and there is no comment in current page, page must go to previous page.
+  ☐ Change pagination url(page -> comment-page)
+  
