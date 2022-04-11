@@ -21,4 +21,13 @@ class Comment extends Model
     public function idea(){
         return $this->belongsTo(Idea::class);
     }
+
+    public function reports(){
+        return $this->belongsToMany(User::class,'comment_spam','comment_id','user_id')->withTimestamps();
+    }
+
+    public function isMarkAsSpamByUser(?User $user){
+        return CommentSpam::where('user_id',$user->id)
+        ->where('comment_id',$this->id)->exists();
+    }
 }

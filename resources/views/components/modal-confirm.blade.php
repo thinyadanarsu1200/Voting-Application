@@ -1,5 +1,5 @@
 @props([
-    'deleteCommentWasSet' => null,
+    'liveWireEventToOpenModal' => null,
     'eventToOpenModal' => null,
     'eventToCloseModal' => null,
     'modalTitle',
@@ -27,8 +27,8 @@
             });
        }
 
-        if('{{ $deleteCommentWasSet }}'){
-            Livewire.on('{{ $deleteCommentWasSet }}', () => {
+        if('{{ $liveWireEventToOpenModal }}'){
+            Livewire.on('{{ $liveWireEventToOpenModal }}', () => {
                 isOpen = true
                 $nextTick(() => $refs.cancelButton.focus())
             });

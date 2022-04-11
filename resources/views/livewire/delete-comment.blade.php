@@ -1,5 +1,5 @@
 <x-modal-confirm 
-    deleteCommentWasSet="deleteCommentWasSet"
+    liveWireEventToOpenModal="deleteCommentWasSet"
     eventToCloseModal="commentWasDeleted"
     modalTitle="Delete Comment"
     modalDescription="Are you sure you want to delete this comment? This action cannot be undone.

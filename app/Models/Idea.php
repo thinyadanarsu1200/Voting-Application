@@ -42,6 +42,11 @@ class Idea extends Model
         return $this->belongsToMany(User::class,'idea_spams','idea_id','user_id');
     }
 
+    public function isMarkAsSpamByUser(?User $user){
+        return IdeaSpams::where('user_id',$user->id)
+        ->where('idea_id',$this->id)->exists();
+    }
+
     public function comments(){
         return $this->hasMany(Comment::class);
     }
@@ -56,10 +61,6 @@ class Idea extends Model
                 ->exists();
     }
 
-    public function isMarkAsSpamByUser(?User $user){
-        return IdeaSpams::where('user_id',$user->id)
-        ->where('idea_id',$this->id)->exists();
-    }
 
     public function vote(User $user){
         $this->votes_count++;

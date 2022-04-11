@@ -55,7 +55,15 @@
                                     Delete Comment
                             </x-dropdown-link>
                         @endcan
-                        <x-dropdown-link>Mark As Span</x-dropdown-link>
+                        <x-dropdown-link
+                        href="#"
+                        @click.prevent="
+                            isOpen = false
+                            Livewire.emit('setMarkAsSpamComment',{{ $comment->id }})
+                        "
+                        >
+                                Mark as span
+                        </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
                   @endauth
