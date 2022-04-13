@@ -17,7 +17,10 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('idea_id')->constrained()->cascadeOnDelete();
-            $table->text('body');
+            $table->foreignId('status_id')->constrained()->cascadeOnDelete();
+            $table->text('body')->nullable();
+            $table->integer('spam_reports')->default(0);
+            $table->boolean('is_status_update')->default(0);
             $table->timestamps();
         });
     }

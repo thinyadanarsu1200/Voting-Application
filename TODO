@@ -1,6 +1,8 @@
 
 Todo:
-  ☐ Refactor livewire event
+  ✔ Refactor livewire event @done(22-04-13 12:53)
+  ✔ Change pagination url(page -> comment-page) @done(22-04-13 11:05)
+  ✔ When admin changes the status, page must scroll to that comment nofication @done(22-04-13 11:06)
   ☐ If last comment is deleted and there is no comment in current page, page must go to previous page.
-  ☐ Change pagination url(page -> comment-page)
+  ☐ clear field
   

@@ -62,8 +62,13 @@ class IdeasIndex extends Component
                     ->when($this->filter === 'top-voted',function($query){
                         $query->orderByDesc('votes_count');
                     })
-                    ->when($this->filter === 'spam-reports', function($query){
+                    ->when($this->filter === 'spam-ideas' && auth()->check() && auth()->user()->hasRole('admin'), function($query){
                         $query->where('spam_reports','>','0');
+                    })
+                    ->when($this->filter === 'spam-comments' && auth()->check() && auth()->user()->hasRole('admin'), function($query){
+                        $query->whereHas('comments',function($query){
+                            $query->where('spam_reports','>',0);
+                        });
                     })
                     ->when($this->filter === 'my-ideas' && auth()->user()->hasRole('admin'),function($query){
                         $query->where('user_id',auth()->user()->id);

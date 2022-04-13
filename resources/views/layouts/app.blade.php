@@ -18,7 +18,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans text-gray-900 text-sm gray-background">
+    <body class="font-sans text-gray-900 text-sm bg-gray-background">
        <header class="flex items-center justify-between px-4 py-2 md:px-4 bg-white shadow">
            <a href="#">
                <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-10 h-10">
@@ -105,8 +105,9 @@
 
        @stack('modals')
 
+       <livewire:scripts/>
+       
        @stack('scripts')
        
-       <livewire:scripts/>
     </body>
 </html>

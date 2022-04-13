@@ -15,7 +15,24 @@
     <x-notification-success/>
 
     @push('scripts')
-        
+        <script>
+            
+    Livewire.hook('message.processed',function(message,component){
+        if(['gotoPage','nextPage','previousPage'].includes(message.updateQueue[0].method)){
+            const first_comment = document.querySelector('.comment-container:first-child');
+            first_comment.scrollIntoView({ behavior: 'smooth'});
+        }
+
+        if( (['commentWasCreated','statusWasUpdated'].includes(message.updateQueue[0].payload.event)) && message.component.fingerprint.name === 'idea-comments'){
+            const last_comment = document.querySelector('.comment-container:last-child');
+            last_comment.scrollIntoView({ behavior: 'smooth' });
+            last_comment.classList.add('border-green-200');
+            setTimeout(() => {
+                last_comment.classList.remove('border-green-200');
+            },5000);
+        }
+    })
+        </script>
     @endpush
 
     @push('modals')

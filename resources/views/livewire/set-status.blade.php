@@ -24,7 +24,7 @@ align="left" width="w-64 md:w-76" event="statusWasUpdated">
                    @endforeach
                 </div>
                 <div>
-                <textarea name="update_comments" id="update_comments" cols="30" rows="3"
+                <textarea wire:model="body" name="update_comments" id="update_comments" cols="30" rows="3"
                 class="w-full text-sm bg-gray-100 rounded-lg placeholder:text-gray-900 border-none px-4 py-2"
                 placeholder="Add an update comment(optional)"></textarea>
                 </div>

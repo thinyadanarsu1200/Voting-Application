@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Status;
 use Livewire\WithPagination;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
     use HasFactory;
 
-    protected $perPage = 3;
+    protected $perPage = 15;
 
     protected $guarded = ['id'];
 
@@ -21,6 +22,11 @@ class Comment extends Model
     public function idea(){
         return $this->belongsTo(Idea::class);
     }
+
+    public function status(){
+        return $this->belongsTo(Status::class);
+    }
+
 
     public function reports(){
         return $this->belongsToMany(User::class,'comment_spam','comment_id','user_id')->withTimestamps();

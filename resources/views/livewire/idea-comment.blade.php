@@ -1,15 +1,23 @@
-<div class="comment-container relative bg-white border border-transparent rounded-md flex shadow">
+<div class="comment-container @if($comment->is_status_update) is-admin status-{{ $comment->status->slug }} @endif relative border border-transparent rounded-md flex shadow">
     <div class="flex flex-1 flex-col md:flex-row px-2 py-6 ml-4">
         <a href="" class="flex-shrink-0">
             <img src="{{ $comment->user->getAvatar() }}" alt="" class="w-14 h-14 rounded-md">
+            @if($comment->user->hasRole('admin'))
+                <span class="text-v-blue font-bold uppercase text-xxs text-center block mt-1">Admin</span>
+            @endif
         </a>
         <div class="flex-1 md:mx-4">
+            @if($comment->is_status_update)
+              <h4 class="text-xl font-semibold mb-3">
+                Status Changed to "{{ $comment->status->name }}"
+              </h4>    
+            @endif
             <div class="text-gray-600">
                 {{ $comment->body }}
             </div>
             <div class="flex items-center justify-between mt-8">
                 <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
-                    <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
+                    <div class="{{ $comment->is_status_update ? 'text-v-blue' : 'text-gray-900'}} font-bold text-gray-900">{{ $comment->user->name }}</div>
                     <div>&bull;</div>
                    @if ($comment->user_id === $comment->idea->user_id)
                         <abbr 
@@ -21,6 +29,11 @@
                         <div>&bull;</div>
                    @endif
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
+                   @admin
+                        @if ($comment->spam_reports > 0)
+                            {{-- <div>Spam Reports - {{ $comment->spam_reports }} --}}
+                        @endif
+                   @endadmin
                 </div>
                 <div class="flex items-center space-x-2">
                   @auth
@@ -62,8 +75,22 @@
                             Livewire.emit('setMarkAsSpamComment',{{ $comment->id }})
                         "
                         >
-                                Mark as span
+                                Mark comment as span
                         </x-dropdown-link>
+
+                        @admin
+                            @if($comment->spam_reports > 0)
+                                <x-dropdown-link
+                                href="#"
+                                @click.prevent="
+                                    isOpen = false
+                                    Livewire.emit('setResetCommentReports',{{ $comment->id }})
+                                "
+                                >
+                                        Reset comment reports
+                                </x-dropdown-link>
+                            @endif
+                        @endadmin
                     </x-slot>
                 </x-dropdown>
                   @endauth
