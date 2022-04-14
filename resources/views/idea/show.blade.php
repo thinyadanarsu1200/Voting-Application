@@ -15,24 +15,35 @@
     <x-notification-success/>
 
     @push('scripts')
-        <script>
-            
-    Livewire.hook('message.processed',function(message,component){
-        if(['gotoPage','nextPage','previousPage'].includes(message.updateQueue[0].method)){
-            const first_comment = document.querySelector('.comment-container:first-child');
-            first_comment.scrollIntoView({ behavior: 'smooth'});
-        }
+    <script>
+        Livewire.hook('message.processed',function(message,component){
+            if(['gotoPage','nextPage','previousPage'].includes(message.updateQueue[0].method)){
+                const first_comment = document.querySelector('.comment-container:first-child');
+                first_comment.scrollIntoView({ behavior: 'smooth'});
+            }
 
-        if( (['commentWasCreated','statusWasUpdated'].includes(message.updateQueue[0].payload.event)) && message.component.fingerprint.name === 'idea-comments'){
-            const last_comment = document.querySelector('.comment-container:last-child');
-            last_comment.scrollIntoView({ behavior: 'smooth' });
-            last_comment.classList.add('border-green-200');
-            setTimeout(() => {
-                last_comment.classList.remove('border-green-200');
-            },5000);
+            //scroll to comment when new created and status changed
+            if( (['commentWasCreated','statusWasUpdated'].includes(message.updateQueue[0].payload.event)) && message.component.fingerprint.name === 'idea-comments'){
+                const last_comment = document.querySelector('.comment-container:last-child');
+                scroll(last_comment);
+            }
+        })
+
+        //scroll to comment when user click notification
+        @if(session('scrollToComment')) 
+                const comment = document.querySelector('#comment-{{ session('scrollToComment') }}');
+                console.log(comment);
+                scroll(comment);
+        @endif
+
+        function scroll(element){
+                element.scrollIntoView({ behavior: 'smooth' });
+                element.classList.add('border-green-500');
+                setTimeout(() => {
+                    element.classList.remove('border-green-500');
+                },5000);
         }
-    })
-        </script>
+    </script>
     @endpush
 
     @push('modals')

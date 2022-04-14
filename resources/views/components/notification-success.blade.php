@@ -1,6 +1,7 @@
 @props([
     'redirect' => false,
     'messageToShow' => '',
+    'type' => 'success',
 ])
 <div
         x-cloak
@@ -17,6 +18,7 @@
             type: 'success',
             showNotification(message){
                 this.isOpen = true;
+                this.type = '{{ $type }}';
                 this.messageToShow = message;
                 setTimeout(() => {
                     this.isOpen = false
@@ -28,11 +30,19 @@
             showNotification($event.detail.message);
         "
         x-init="
-            if('{{ $redirect }}'){
+            {{-- if('{{ $redirect }}'){
                 $nextTick(() => {
                     showNotification('{{ $messageToShow }}');
                 });
-            } 
+            }  --}}
+
+            @if(session('success'))
+                showNotification('{{ $messageToShow }}')
+            @endif
+
+            @if(session('error'))
+                showNotification('{{ $messageToShow }}')
+            @endif
          "
         class="z-20 flex justify-between max-w-xs sm:max-w-sm w-full fixed bottom-0 right-0 bg-white rounded-xl shadow-lg border px-4 py-5 mx-2 sm:mx-6 my-8"
     >

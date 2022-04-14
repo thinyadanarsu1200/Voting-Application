@@ -1,4 +1,6 @@
-<div class="comment-container @if($comment->is_status_update) is-admin status-{{ $comment->status->slug }} @endif relative border border-transparent rounded-md flex shadow">
+<div 
+id="comment-{{ $comment->id }}"
+class="comment-container @if($comment->is_status_update) is-admin status-{{ $comment->status->slug }} @endif relative border border-transparent rounded-md flex shadow">
     <div class="flex flex-1 flex-col md:flex-row px-2 py-6 ml-4">
         <a href="" class="flex-shrink-0">
             <img src="{{ $comment->user->getAvatar() }}" alt="" class="w-14 h-14 rounded-md">

@@ -28,12 +28,14 @@ switch ($width) {
 
 <div class="relative {{ $show }}" x-data="{ open: false }" 
 x-init="
-   if('{{ $event }}'){
-    Livewire.on('{{ $event }}', () => {
+    if('{{ $event }}'){
+        Livewire.on('{{ $event }}', () => {
+            open = false;
+        }); 
+    }
+    Livewire.on('markAllAsRead', () => {
         open = false;
-    });
-
-   }
+    })
 "
 @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
